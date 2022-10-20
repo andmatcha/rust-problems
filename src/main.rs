@@ -1,24 +1,35 @@
+mod calc;
+
 use std::io::{stdin, stdout, Write};
 
 fn main() {
-    let (mut num1, mut num2, mut num3, mut num4) =
+    let (mut str_num1, mut str_num2, mut str_num3, mut str_num4) =
         (String::new(), String::new(), String::new(), String::new());
 
-    print!("Enter first number[0-9]: ");
+    print!("Enter first str_number[0-9]: ");
     stdout().flush().unwrap();
-    stdin().read_line(&mut num1).expect("error");
+    stdin().read_line(&mut str_num1).expect("error");
 
-    print!("Enter second number[0-9]: ");
+    print!("Enter second str_number[0-9]: ");
     stdout().flush().unwrap();
-    stdin().read_line(&mut num2).expect("error");
+    stdin().read_line(&mut str_num2).expect("error");
 
-    print!("Enter third number[0-9]: ");
+    print!("Enter third str_number[0-9]: ");
     stdout().flush().unwrap();
-    stdin().read_line(&mut num3).expect("error");
+    stdin().read_line(&mut str_num3).expect("error");
 
-    print!("Enter fourth number[0-9]: ");
+    print!("Enter fourth str_number[0-9]: ");
     stdout().flush().unwrap();
-    stdin().read_line(&mut num4).expect("error");
+    stdin().read_line(&mut str_num4).expect("error");
 
-    println!("You entered {}, {}, {}, {}", num1.trim(), num2.trim(), num3.trim(), num4.trim());
+    let (num1, num2, num3, num4): (i32, i32, i32, i32) = (
+        str_num1.trim().parse().ok().unwrap(),
+        str_num2.trim().parse().ok().unwrap(),
+        str_num3.trim().parse().ok().unwrap(),
+        str_num4.trim().parse().ok().unwrap(),
+    );
+
+    println!("You entered {}, {}, {}, {}", num1, num2, num3, num4);
+
+    calc::run();
 }
